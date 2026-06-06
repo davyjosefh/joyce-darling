@@ -1,0 +1,1338 @@
+/* ============================================================
+   JOYCE DARLING — Regeneração Cutânea
+   style.css · Versão 1.0
+   Paleta: Creme · Nude · Ouro · Rosê · Verde Sage
+   Tipografia: Cormorant Garamond + Jost
+   ============================================================ */
+
+/* ─────────────────────────────────────────────
+   GOOGLE FONTS
+   Adicione no <head> do HTML:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+───────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────
+   1. TOKENS DE DESIGN — VARIÁVEIS CSS
+───────────────────────────────────────────── */
+
+:root {
+
+  /* — Cor principal: Ouro — */
+  --gold:             #BFA07A;
+  --gold-light:       #D6BFA0;
+  --gold-dark:        #9A7D5A;
+  --gold-shine:       #EDD9BC;
+
+  /* — Neutros quentes — */
+  --cream:            #FAF8F5;   /* fundo global           */
+  --ivory:            #F5F2EE;   /* fundo de cards          */
+  --parchment:        #EDE9E1;   /* bordas e divisores      */
+  --stone:            #D4CFC7;   /* bordas mais escuras     */
+
+  /* — Rosê — */
+  --rose:             #E8D5C4;
+  --rose-deep:        #C9A898;
+
+  /* — Texto — */
+  --text-dark:        #2C2825;   /* títulos                 */
+  --text-mid:         #6B625A;   /* parágrafos              */
+  --text-light:       #A09890;   /* labels, hints           */
+
+  /* — Branco puro — */
+  --white:            #FFFFFF;
+
+  /* — Verde sage — */
+  --green:            #7A9E7E;
+  --green-dark:       #5E8563;
+  --green-light:      #EDF4EE;
+
+  /* — Vermelho coral (desconto especial) — */
+  --coral:            #C0877A;
+  --coral-dark:       #A56A5E;
+
+  /* — Sombras — */
+  --shadow-xs:        0 2px  8px  rgba(44, 40, 37, .05);
+  --shadow-sm:        0 4px  16px rgba(44, 40, 37, .07);
+  --shadow-md:        0 8px  32px rgba(44, 40, 37, .10);
+  --shadow-lg:        0 20px 60px rgba(44, 40, 37, .13);
+  --shadow-gold:      0 8px  28px rgba(191, 160, 122, .30);
+  --shadow-green:     0 8px  24px rgba(122, 158, 126, .22);
+
+  /* — Border radius — */
+  --radius-xs:  4px;
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-xl:  32px;
+  --radius-full: 9999px;
+
+  /* — Tipografia — */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', 'Trebuchet MS', sans-serif;
+
+  /* — Espaçamento base — */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-7:  28px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* — Transição padrão — */
+  --transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+  --transition-slow: 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+
+
+/* ─────────────────────────────────────────────
+   2. RESET & BASE
+───────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.65;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Textura de grão sutil sobre o fundo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+input {
+  font-family: var(--font-body);
+}
+
+
+/* ─────────────────────────────────────────────
+   3. SCROLLBAR PERSONALIZADA
+───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-light);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+
+/* ─────────────────────────────────────────────
+   4. CONTAINER
+───────────────────────────────────────────── */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-6) 72px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ─────────────────────────────────────────────
+   5. ANIMAÇÕES KEYFRAMES
+───────────────────────────────────────────── */
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes pulseGold {
+  0%, 100% { box-shadow: var(--shadow-gold); }
+  50%       { box-shadow: 0 16px 48px rgba(191, 160, 122, .45); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+/* ─────────────────────────────────────────────
+   6. HEADER
+───────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 44px 56px;
+  margin-bottom: 36px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--parchment);
+  position: relative;
+  overflow: hidden;
+  animation: fadeDown .8s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+/* Linha dourada decorativa no topo */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--gold-light) 20%,
+    var(--gold) 50%,
+    var(--gold-light) 80%,
+    transparent 100%
+  );
+}
+
+/* Círculo de brilho decorativo */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -90px;
+  right: -90px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(191, 160, 122, .07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ── Logo container ── */
+.logo-container {
+  flex-shrink: 0;
+}
+
+.logo-container img {
+  max-width: 120px;
+  height: auto;
+  filter: drop-shadow(0 4px 16px rgba(191, 160, 122, .25));
+}
+
+/* Placeholder quando não há logo */
+.logo-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--white);
+  box-shadow: var(--shadow-gold);
+  transition: var(--transition);
+}
+
+.logo-placeholder:hover {
+  transform: rotate(15deg) scale(1.05);
+}
+
+/* ── Texto do header ── */
+.header-text {
+  text-align: center;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 8px;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.logo-subtitle {
+  font-size: .72rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Divisor ornamental */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 14px auto 0;
+}
+
+
+/* ─────────────────────────────────────────────
+   7. TABS DE NAVEGAÇÃO
+───────────────────────────────────────────── */
+
+.tabs-container {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  background: var(--white);
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--parchment);
+  flex-wrap: wrap;
+  animation: fadeUp .7s .1s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+.tab-button {
+  flex: 1;
+  min-width: 160px;
+  padding: 14px var(--space-7);
+  border: none;
+  background: transparent;
+  color: var(--text-mid);
+  font-weight: 500;
+  font-size: .88rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.tab-button:hover {
+  color: var(--gold);
+  background: var(--ivory);
+}
+
+.tab-button.active {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white);
+  box-shadow: var(--shadow-gold);
+}
+
+/* ── Conteúdo das abas ── */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeUp .5s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+
+/* ─────────────────────────────────────────────
+   8. LAYOUT PRINCIPAL (GRID 2 COLUNAS)
+───────────────────────────────────────────── */
+
+.main-content {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: var(--space-7);
+  margin-bottom: var(--space-7);
+  align-items: start;
+}
+
+
+/* ─────────────────────────────────────────────
+   9. PAINEL DE SELEÇÃO (Coluna esquerda)
+───────────────────────────────────────────── */
+
+.selection-panel {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--parchment);
+  position: sticky;
+  top: 24px;
+  animation: fadeUp .7s .15s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+.selection-panel h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: var(--text-dark);
+  margin-bottom: var(--space-7);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--parchment);
+  text-align: center;
+}
+
+/* ── Seção interna ── */
+.section {
+  margin-bottom: var(--space-7);
+}
+
+.section-title {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+/* ── Grupo de botões toggle ── */
+.buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.btn-combo {
+  flex: 1;
+  min-width: 80px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--parchment);
+  background: var(--ivory);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: .8rem;
+  text-align: center;
+  color: var(--text-mid);
+  letter-spacing: .3px;
+  transition: var(--transition);
+}
+
+.btn-combo:hover {
+  border-color: var(--gold-light);
+  color: var(--gold-dark);
+  background: rgba(191, 160, 122, .06);
+  transform: translateY(-1px);
+}
+
+.btn-combo.active {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(191, 160, 122, .30);
+}
+
+/* ── Slider ── */
+.slider-group {
+  margin-bottom: var(--space-6);
+}
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.slider-label span {
+  font-weight: 500;
+  font-size: .88rem;
+  color: var(--text-mid);
+}
+
+.slider-value {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--white);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: .82rem;
+  letter-spacing: 1px;
+  min-width: 36px;
+  text-align: center;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--parchment);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(191, 160, 122, .40);
+  border: 3px solid var(--white);
+  transition: transform .2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  cursor: pointer;
+  border: 3px solid var(--white);
+  box-shadow: 0 3px 10px rgba(191, 160, 122, .40);
+}
+
+/* ── Input numérico ── */
+.input-group {
+  margin-bottom: 0;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+  font-size: .72rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 11px 15px;
+  border: 1.5px solid var(--parchment);
+  border-radius: var(--radius-sm);
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  background: var(--ivory);
+  transition: var(--transition);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--gold-light);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(191, 160, 122, .12);
+}
+
+.input-group input::placeholder {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+
+/* ─────────────────────────────────────────────
+   10. PAINEL DE RESULTADO (Coluna direita)
+───────────────────────────────────────────── */
+
+.result-panel {
+  animation: fadeUp .7s .2s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+/* ── Card principal ── */
+.result-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--parchment);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Cabeçalho do resultado ── */
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--parchment);
+}
+
+.result-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--rose) 0%, var(--parchment) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 1.5px solid rgba(191, 160, 122, .20);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.result-icon:hover {
+  transform: scale(1.05) rotate(-5deg);
+}
+
+.result-title h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: var(--space-1);
+}
+
+.result-title p {
+  font-size: .8rem;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── Grid de preços ── */
+.price-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.price-box {
+  background: var(--ivory);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  border: 1.5px solid var(--parchment);
+  transition: var(--transition);
+}
+
+.price-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold-light);
+}
+
+/* Variante: box de combo */
+.price-box.combo {
+  background: var(--green-light);
+  border-color: rgba(122, 158, 126, .25);
+}
+
+.price-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.price-value {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--gold-dark);
+  margin-bottom: var(--space-1);
+  line-height: 1;
+}
+
+.price-detail {
+  font-size: .78rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+
+/* ─────────────────────────────────────────────
+   11. BANNERS DE DESCONTO
+───────────────────────────────────────────── */
+
+/* ── Banner verde — economia do combo ── */
+.discount-banner {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 26px 30px;
+  text-align: center;
+  margin: var(--space-6) 0;
+  box-shadow: var(--shadow-green);
+  transition: var(--transition);
+}
+
+.discount-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(122, 158, 126, .30);
+}
+
+/* ── Banner coral — desconto personalizado ── */
+.custom-discount-banner {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 22px 28px;
+  text-align: center;
+  margin: var(--space-4) 0;
+  box-shadow: 0 8px 24px rgba(165, 106, 94, .20);
+}
+
+/* ── Elementos compartilhados dos banners ── */
+.discount-label,
+.custom-discount-banner .discount-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: .9;
+  margin-bottom: var(--space-2);
+}
+
+.discount-value,
+.custom-discount-banner .discount-value {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin-bottom: var(--space-1);
+  line-height: 1.1;
+}
+
+.custom-discount-banner .discount-value {
+  font-size: 2.2rem;
+}
+
+.discount-percentage {
+  font-size: .82rem;
+  opacity: .88;
+  letter-spacing: 1px;
+}
+
+
+/* ─────────────────────────────────────────────
+   12. SEÇÃO DE BENEFÍCIOS
+───────────────────────────────────────────── */
+
+.benefits-section {
+  background: linear-gradient(
+    135deg,
+    rgba(191, 160, 122, .06) 0%,
+    rgba(191, 160, 122, .02) 100%
+  );
+  border-radius: var(--radius-md);
+  padding: 26px;
+  border-left: 3px solid var(--gold-light);
+  margin: var(--space-6) 0;
+}
+
+.benefits-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 14px;
+  margin-bottom: var(--space-4);
+  align-items: flex-start;
+}
+
+.benefit-item:last-child {
+  margin-bottom: 0;
+}
+
+.benefit-icon {
+  font-size: 1.3rem;
+  min-width: 28px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.benefit-text strong {
+  font-weight: 600;
+  font-size: .85rem;
+  color: var(--text-dark);
+  display: block;
+  margin-bottom: 3px;
+  letter-spacing: .2px;
+}
+
+.benefit-text p {
+  font-size: .8rem;
+  color: var(--text-light);
+  line-height: 1.55;
+  margin: 0;
+}
+
+
+/* ─────────────────────────────────────────────
+   13. BANNER DE VALOR FINAL
+───────────────────────────────────────────── */
+
+.final-value-banner {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  text-align: center;
+  margin: var(--space-6) 0;
+  box-shadow: var(--shadow-gold);
+  position: relative;
+  overflow: hidden;
+  animation: pulseGold 4s ease-in-out infinite;
+}
+
+/* Círculos decorativos internos */
+.final-value-banner::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .07);
+  pointer-events: none;
+}
+
+.final-value-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .05);
+  pointer-events: none;
+}
+
+.final-value-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: .9;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.final-value {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.final-value-description {
+  font-size: .82rem;
+  opacity: .88;
+  letter-spacing: 1.5px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ─────────────────────────────────────────────
+   14. INFO BOX — Resumo do Protocolo
+───────────────────────────────────────────── */
+
+.info-box {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--parchment);
+}
+
+.info-box h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+}
+
+.info-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.info-item {
+  padding: 14px 16px;
+  background: var(--ivory);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--parchment);
+  transition: var(--transition);
+}
+
+.info-item:hover {
+  border-color: var(--gold-light);
+  background: rgba(191, 160, 122, .04);
+}
+
+.info-item strong {
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+.info-item span {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+
+/* ─────────────────────────────────────────────
+   15. GALERIA DE RESULTADOS
+───────────────────────────────────────────── */
+
+.gallery-section {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--parchment);
+  animation: fadeUp .7s .1s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+.gallery-section h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--text-dark);
+  margin-bottom: var(--space-8);
+}
+
+/* ── Filtros ── */
+.gallery-filters {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 9px 20px;
+  border: 1.5px solid var(--parchment);
+  background: var(--ivory);
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  font-size: .78rem;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  color: var(--text-mid);
+}
+
+.filter-btn:hover {
+  border-color: var(--gold-light);
+  color: var(--gold-dark);
+  background: rgba(191, 160, 122, .06);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(191, 160, 122, .30);
+}
+
+/* ── Grid de cards ── */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.gallery-item {
+  background: var(--ivory);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--parchment);
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold-light);
+}
+
+/* ── Área das imagens antes/depois ── */
+.gallery-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 220px;
+  position: relative;
+}
+
+/* Badge "antes → depois" */
+.gallery-images::after {
+  content: 'ANTES → DEPOIS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--white);
+  background: rgba(0, 0, 0, .28);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Imagem "antes" */
+.gallery-img:first-child {
+  background: linear-gradient(135deg, var(--parchment) 0%, var(--rose) 100%);
+  color: var(--text-mid);
+}
+
+/* Imagem "depois" */
+.gallery-img:last-child {
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold-light) 100%);
+  color: rgba(255, 255, 255, .75);
+}
+
+/* ── Info do card ── */
+.gallery-info {
+  padding: 18px 20px;
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: var(--space-1);
+}
+
+.gallery-description {
+  font-size: .78rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.gallery-stats {
+  display: flex;
+  gap: var(--space-2);
+  font-size: .72rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ── Área de upload ── */
+.upload-area {
+  border: 2px dashed var(--stone);
+  border-radius: var(--radius-md);
+  padding: 44px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background: var(--ivory);
+  margin-bottom: var(--space-6);
+}
+
+.upload-area:hover {
+  border-color: var(--gold-light);
+  background: rgba(191, 160, 122, .04);
+}
+
+.upload-area.dragging {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+.upload-area p {
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: var(--space-2);
+  font-size: .92rem;
+}
+
+.upload-area small {
+  color: var(--text-light);
+  font-size: .78rem;
+}
+
+
+/* ─────────────────────────────────────────────
+   16. UTILITÁRIOS
+───────────────────────────────────────────── */
+
+/* Esconder elemento visualmente mas manter acessível */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Cor de destaque verde no valor combo */
+.text-green { color: var(--green); }
+.text-gold  { color: var(--gold);  }
+
+
+/* ─────────────────────────────────────────────
+   17. RESPONSIVIDADE
+───────────────────────────────────────────── */
+
+/* ── Tablet (≤ 1080px) ── */
+@media (max-width: 1080px) {
+
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .selection-panel {
+    position: static;
+  }
+
+}
+
+/* ── Mobile grande (≤ 768px) ── */
+@media (max-width: 768px) {
+
+  .container {
+    padding: var(--space-4) 14px 48px;
+  }
+
+  .header {
+    padding: 30px var(--space-6);
+    gap: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .logo-text {
+    font-size: 2.1rem;
+    letter-spacing: 5px;
+  }
+
+  .result-card,
+  .info-box,
+  .gallery-section {
+    padding: 26px var(--space-5);
+  }
+
+  .result-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .price-grid,
+  .info-list {
+    grid-template-columns: 1fr;
+  }
+
+  .final-value {
+    font-size: 3rem;
+  }
+
+  .tabs-container {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    min-width: unset;
+  }
+
+  .gallery-section {
+    padding: 28px var(--space-5);
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* ── Mobile pequeno (≤ 480px) ── */
+@media (max-width: 480px) {
+
+  .logo-text {
+    font-size: 1.65rem;
+    letter-spacing: 4px;
+  }
+
+  .result-card {
+    padding: 22px var(--space-4);
+  }
+
+  .final-value {
+    font-size: 2.5rem;
+  }
+
+  .buttons-group {
+    gap: var(--space-1);
+  }
+
+  .btn-combo {
+    min-width: 70px;
+    font-size: .75rem;
+    padding: 9px 10px;
+  }
+
+  .gallery-section {
+    padding: 22px var(--space-4);
+  }
+
+  .upload-area {
+    padding: 30px var(--space-5);
+  }
+
+}
+
+
+/* ─────────────────────────────────────────────
+   18. ACESSIBILIDADE — FOCUS VISIBLE
+───────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* Remover outline padrão quando não é teclado */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+/* ─────────────────────────────────────────────
+   19. PRINT — desativa decorações desnecessárias
+───────────────────────────────────────────── */
+
+@media print {
+
+  body::before,
+  .header::before,
+  .header::after,
+  .final-value-banner::before,
+  .final-value-banner::after {
+    display: none;
+  }
+
+  .tabs-container,
+  .tab-button,
+  .upload-area,
+  .gallery-filters {
+    display: none;
+  }
+
+  .tab-content {
+    display: block !important;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .result-card,
+  .selection-panel,
+  .info-box {
+    box-shadow: none;
+    border: 1px solid var(--stone);
+  }
+
+}
+
+
+/* ─────────────────────────────────────────────
+   FIM DO ARQUIVO — joyce_darling / style.css
+───────────────────────────────────────────── */
