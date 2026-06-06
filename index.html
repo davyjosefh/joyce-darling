@@ -3,844 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joyce Darling - Regeneração Cutânea</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #a89968;
-            --primary-light: #c9b896;
-            --secondary: #d4a574;
-            --dark: #2a2a2a;
-            --light: #f9f7f3;
-            --cream: #fefcf8;
-            --accent: #7fb069;
-            --text: #3d3d3d;
-            --error: #e74c3c;
-            --border: #e5e0d5;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--light) 100%);
-            min-height: 100vh;
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* HEADER */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 40px 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            animation: slideDown 0.7s ease-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .logo-container {
-            flex-shrink: 0;
-        }
-
-        .logo-container img {
-            max-width: 150px;
-            height: auto;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
-        }
-
-        .header-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .logo-text {
-            font-size: 2.5em;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .logo-subtitle {
-            font-size: 1em;
-            letter-spacing: 3px;
-            color: var(--primary);
-            opacity: 0.7;
-        }
-
-        .divider {
-            width: 80px;
-            height: 2px;
-            background: var(--secondary);
-            margin: 15px auto;
-        }
-
-        /* TABS */
-        .tabs-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            overflow-x: auto;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 12px 28px;
-            border: none;
-            background: #f0ede8;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 1em;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
-        .tab-button:hover {
-            background: var(--border);
-            transform: translateY(-2px);
-        }
-
-        .tab-button.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: 0 8px 25px rgba(168, 153, 104, 0.25);
-        }
-
-        /* TAB CONTENT */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* MAIN CONTENT LAYOUT */
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        /* PAINEL DE SELEÇÃO */
-        .selection-panel {
-            background: white;
-            border-radius: 20px;
-            padding: 35px 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            height: fit-content;
-            border: 1px solid var(--border);
-            animation: slideUp 0.7s ease-out 0.1s both;
-        }
-
-        .selection-panel h2 {
-            color: var(--primary);
-            margin-bottom: 30px;
-            font-size: 1.4em;
-            font-weight: 600;
-        }
-
-        .section {
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.85;
-        }
-
-        .buttons-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .btn-combo {
-            flex: 1;
-            min-width: 90px;
-            padding: 12px 16px;
-            border: 2px solid var(--border);
-            background: white;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-            text-align: center;
-            color: var(--text);
-            letter-spacing: 0.5px;
-        }
-
-        .btn-combo:hover {
-            border-color: var(--primary);
-            background: rgba(168, 153, 104, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .btn-combo.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-color: var(--primary);
-            box-shadow: 0 8px 20px rgba(168, 153, 104, 0.3);
-        }
-
-        /* SLIDER */
-        .slider-group {
-            margin-bottom: 28px;
-        }
-
-        .slider-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .slider-label span {
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.95em;
-        }
-
-        .slider-value {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9em;
-            box-shadow: 0 4px 12px rgba(168, 153, 104, 0.2);
-        }
-
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: var(--border);
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(168, 153, 104, 0.4);
-            border: 3px solid white;
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(168, 153, 104, 0.4);
-        }
-
-        /* INPUT GENÉRICO */
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9em;
-            color: var(--text);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(168, 153, 104, 0.05);
-            box-shadow: 0 0 0 4px rgba(168, 153, 104, 0.1);
-        }
-
-        /* PAINEL DE RESULTADO */
-        .result-panel {
-            animation: slideUp 0.7s ease-out 0.2s both;
-        }
-
-        .result-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-        }
-
-        .result-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            padding-bottom: 25px;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .result-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(168, 153, 104, 0.15), rgba(212, 165, 116, 0.15));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            border: 2px solid rgba(168, 153, 104, 0.2);
-        }
-
-        .result-title h3 {
-            color: var(--text);
-            font-size: 1.4em;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .result-title p {
-            color: #9a9a9a;
-            font-size: 0.9em;
-            letter-spacing: 0.5px;
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .price-box {
-            background: #fefcf8;
-            border-radius: 15px;
-            padding: 25px;
-            border: 2px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .price-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .price-box.combo {
-            background: linear-gradient(135deg, rgba(127, 176, 105, 0.08), rgba(127, 176, 105, 0.05));
-            border-color: rgba(127, 176, 105, 0.3);
-        }
-
-        .price-label {
-            color: #7a7a7a;
-            font-size: 0.8em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            opacity: 0.8;
-        }
-
-        .price-value {
-            font-size: 2.2em;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .price-detail {
-            font-size: 0.85em;
-            color: #9a9a9a;
-            line-height: 1.5;
-        }
-
-        /* DESCONTO */
-        .discount-banner {
-            background: linear-gradient(135deg, var(--accent) 0%, #6fa85d 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(127, 176, 105, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .discount-banner:hover {
-            transform: scale(1.02);
-        }
-
-        .discount-label {
-            font-size: 0.85em;
-            opacity: 0.95;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        .discount-value {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .discount-percentage {
-            font-size: 1em;
-            opacity: 0.95;
-            letter-spacing: 0.5px;
-        }
-
-        /* DESCONTO PERSONALIZADO */
-        .custom-discount-banner {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
-        }
-
-        .custom-discount-banner .discount-label {
-            font-size: 0.85em;
-            opacity: 0.95;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        .custom-discount-banner .discount-value {
-            font-size: 2.2em;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        /* BENEFÍCIOS */
-        .benefits-section {
-            background: linear-gradient(135deg, rgba(127, 176, 105, 0.1), rgba(127, 176, 105, 0.05));
-            border-radius: 15px;
-            padding: 25px;
-            border-left: 5px solid var(--accent);
-            margin: 30px 0;
-        }
-
-        .benefits-title {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .benefit-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            align-items: flex-start;
-        }
-
-        .benefit-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .benefit-icon {
-            font-size: 1.5em;
-            min-width: 30px;
-            text-align: center;
-        }
-
-        .benefit-text {
-            flex: 1;
-        }
-
-        .benefit-text strong {
-            color: var(--primary);
-            display: block;
-            margin-bottom: 4px;
-            font-size: 0.95em;
-        }
-
-        .benefit-text p {
-            color: #7a7a7a;
-            font-size: 0.9em;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* VALOR FINAL DESTACADO */
-        .final-value-banner {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 35px;
-            text-align: center;
-            margin: 30px 0;
-            box-shadow: 0 15px 40px rgba(168, 153, 104, 0.3);
-            animation: pulse 2s infinite;
-        }
-
-        .final-value-label {
-            font-size: 0.9em;
-            opacity: 0.95;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        .final-value {
-            font-size: 3.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .final-value-description {
-            font-size: 1em;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.02);
-            }
-        }
-
-        /* INFO BOX */
-        .info-box {
-            background: white;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border);
-            animation: slideUp 0.7s ease-out 0.3s both;
-        }
-
-        .info-box h4 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.15em;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .info-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .info-item {
-            padding: 15px;
-            background: #fefcf8;
-            border-radius: 10px;
-            font-size: 0.9em;
-            border: 1px solid var(--border);
-        }
-
-        .info-item strong {
-            color: var(--primary);
-            display: block;
-            margin-bottom: 6px;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .info-item span {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        /* GALERIA DE RESULTADOS */
-        .gallery-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid var(--border);
-        }
-
-        .gallery-filters {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 12px 24px;
-            border: 2px solid var(--border);
-            background: white;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            color: var(--text);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .gallery-item {
-            background: #fefcf8;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .gallery-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            height: 250px;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3em;
-        }
-
-        .gallery-info {
-            padding: 20px;
-        }
-
-        .gallery-title {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        .gallery-description {
-            color: #9a9a9a;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .gallery-stats {
-            display: flex;
-            gap: 10px;
-            font-size: 0.85em;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* UPLOAD AREA */
-        .upload-area {
-            border: 2px dashed var(--border);
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: #fefcf8;
-            margin-bottom: 30px;
-        }
-
-        .upload-area:hover {
-            border-color: var(--primary);
-            background: rgba(168, 153, 104, 0.05);
-        }
-
-        .upload-area.dragging {
-            border-color: var(--accent);
-            background: rgba(127, 176, 105, 0.1);
-        }
-
-        .upload-area p {
-            color: var(--text);
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .upload-area small {
-            color: #9a9a9a;
-            font-size: 0.9em;
-        }
-
-        /* RESPONSIVO */
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
-            .info-list {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-
-            .header {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 30px 15px;
-            }
-
-            .logo-text {
-                font-size: 1.8em;
-            }
-
-            .selection-panel,
-            .result-card,
-            .info-box,
-            .gallery-section {
-                padding: 25px 20px;
-            }
-
-            .tabs-container {
-                flex-direction: column;
-            }
-
-            .tab-button {
-                width: 100%;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .price-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .result-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .final-value {
-                font-size: 2.5em;
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <title>Joyce Darling — Regeneração Cutânea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
+
         <!-- HEADER -->
         <div class="header">
             <div class="logo-container">
-                <img src="logo_joyce_darling.png" alt="Joyce Darling Logo">
+                <div class="logo-placeholder">✦</div>
             </div>
             <div class="header-text">
                 <div class="logo-text">Joyce Darling</div>
@@ -852,10 +26,10 @@
         <!-- TABS -->
         <div class="tabs-container">
             <button class="tab-button active" onclick="switchTab('protocolo', event)">
-                📋 Meu Protocolo
+                ✦ Meu Protocolo
             </button>
             <button class="tab-button" onclick="switchTab('resultados', event)">
-                💎 Meus Resultados
+                ✦ Meus Resultados
             </button>
         </div>
 
@@ -864,9 +38,8 @@
             <div class="main-content">
                 <!-- PAINEL DE SELEÇÃO -->
                 <div class="selection-panel">
-                    <h2>MEU PROTOCOLO</h2>
+                    <h2>Meu Protocolo</h2>
 
-                    <!-- Tipo de Tratamento -->
                     <div class="section">
                         <div class="section-title">Tipo de Tratamento</div>
                         <div class="buttons-group" id="tratamentoButtons">
@@ -879,26 +52,23 @@
                         </div>
                     </div>
 
-                    <!-- Tamanho da Área -->
                     <div class="section">
                         <div class="section-title">Tamanho da Área</div>
                         <div class="buttons-group" id="areaButtons">
                             <button class="btn-combo active" data-area="P">P (até 10cm)</button>
-                            <button class="btn-combo" data-area="M">M (15-25cm)</button>
+                            <button class="btn-combo" data-area="M">M (15–25cm)</button>
                             <button class="btn-combo" data-area="G">G (acima 25cm)</button>
                         </div>
                     </div>
 
-                    <!-- Área Dupla -->
                     <div class="section">
                         <div class="section-title">Tipo de Área</div>
                         <div class="buttons-group" id="areaTypeButtons">
                             <button class="btn-combo active" data-multiplier="1">Simples</button>
-                            <button class="btn-combo" data-multiplier="2">Dupla (2x)</button>
+                            <button class="btn-combo" data-multiplier="2">Dupla (2×)</button>
                         </div>
                     </div>
 
-                    <!-- Número de Sessões -->
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Número de Sessões</span>
@@ -907,7 +77,6 @@
                         <input type="range" id="sessoesSlider" min="1" max="10" value="1">
                     </div>
 
-                    <!-- Desconto Personalizado -->
                     <div class="input-group">
                         <label for="descontoInput">Desconto Personalizado (%)</label>
                         <input type="number" id="descontoInput" min="0" max="100" value="0" placeholder="Digite a % de desconto">
@@ -918,58 +87,56 @@
                 <div class="result-panel">
                     <div class="result-card">
                         <div class="result-header">
-                            <div class="result-icon" id="resultIcon">🟣</div>
+                            <div class="result-icon" id="resultIcon">✦</div>
                             <div class="result-title">
                                 <h3 id="resultName">Estrias Roxas</h3>
-                                <p id="resultDescription">Área P - 1 sessão</p>
+                                <p id="resultDescription">Área P · 1 sessão</p>
                             </div>
                         </div>
 
                         <div class="price-grid">
                             <div class="price-box">
-                                <div class="price-label">💰 Sessão Isolada</div>
+                                <div class="price-label">Sessão Isolada</div>
                                 <div class="price-value" id="precoIsolado">R$ 250</div>
                                 <div class="price-detail" id="detailIsolado">R$ 250 × 1 = R$ 250</div>
                             </div>
                             <div class="price-box combo">
-                                <div class="price-label">🎁 Sessão em Combo</div>
+                                <div class="price-label">Sessão em Combo</div>
                                 <div class="price-value" id="precoCombo">R$ 150</div>
                                 <div class="price-detail" id="detailCombo">R$ 150 × 1 = R$ 150</div>
                             </div>
                         </div>
 
                         <div class="discount-banner">
-                            <div class="discount-label">💚 Economia ao Fechar Combo</div>
+                            <div class="discount-label">Economia ao Fechar Combo</div>
                             <div class="discount-value" id="discountValue">R$ 100</div>
-                            <div class="discount-percentage" id="discountPercent">40%</div>
+                            <div class="discount-percentage" id="discountPercent">40% de desconto</div>
                         </div>
 
-                        <!-- DESCONTO PERSONALIZADO -->
                         <div id="customDiscountBanner" style="display: none;" class="custom-discount-banner">
-                            <div class="discount-label">🎉 DESCONTO ESPECIAL HOJE!</div>
+                            <div class="discount-label">Desconto Especial Aplicado</div>
                             <div class="discount-value" id="customDiscountValue">R$ 15</div>
-                            <div class="discount-percentage" id="customDiscountPercent">Você economiza mais!</div>
+                            <div class="discount-percentage" id="customDiscountPercent">Você economiza ainda mais!</div>
                         </div>
 
-                        <!-- BENEFÍCIOS -->
                         <div class="benefits-section">
-                            <div class="benefits-title">✨ Benefícios Inclusos no Combo</div>
+                            <div class="benefits-title">✦ Benefícios Inclusos no Combo</div>
                             <div class="benefit-item">
-                                <div class="benefit-icon">🧴</div>
+                                <div class="benefit-icon">💡</div>
                                 <div class="benefit-text">
                                     <strong>Pós-Procedimento com LED Terapia</strong>
                                     <p>LED terapia profissional em todas as sessões do seu protocolo</p>
                                 </div>
                             </div>
                             <div class="benefit-item">
-                                <div class="benefit-icon">👩‍⚕️</div>
+                                <div class="benefit-icon">🌿</div>
                                 <div class="benefit-text">
                                     <strong>Acompanhamento Contínuo e Home Care Personalizado</strong>
                                     <p>Orientações exclusivas e cuidados customizados para sua necessidade</p>
                                 </div>
                             </div>
                             <div class="benefit-item">
-                                <div class="benefit-icon">💰</div>
+                                <div class="benefit-icon">🎁</div>
                                 <div class="benefit-text">
                                     <strong>Programa de Indicação Premiada</strong>
                                     <p>Indique uma amiga que adquira combo e ganhe R$ 40,00 em PIX por cada indicação!</p>
@@ -977,7 +144,6 @@
                             </div>
                         </div>
 
-                        <!-- VALOR FINAL DESTACADO -->
                         <div class="final-value-banner">
                             <div class="final-value-label">Seu Investimento Total</div>
                             <div class="final-value" id="finalValue">R$ 150</div>
@@ -985,9 +151,8 @@
                         </div>
                     </div>
 
-                    <!-- INFO BOX -->
                     <div class="info-box">
-                        <h4>📋 Resumo do Protocolo</h4>
+                        <h4>✦ Resumo do Protocolo</h4>
                         <div class="info-list">
                             <div class="info-item">
                                 <strong>Sessões</strong>
@@ -1003,7 +168,7 @@
                             </div>
                             <div class="info-item">
                                 <strong>Total Combo</strong>
-                                <span id="infoValorCombo" style="color: var(--accent);">R$ 150</span>
+                                <span id="infoValorCombo" style="color: var(--green);">R$ 150</span>
                             </div>
                         </div>
                     </div>
@@ -1014,7 +179,7 @@
         <!-- ABA 2: RESULTADOS -->
         <div id="resultados" class="tab-content">
             <div class="gallery-section">
-                <h2 style="color: var(--primary); margin-bottom: 30px; font-size: 1.5em;">💎 Galeria de Resultados Antes e Depois</h2>
+                <h2>Galeria de Resultados</h2>
 
                 <div class="gallery-filters">
                     <button class="filter-btn active" onclick="filterGallery('todos', event)">Todos os Casos</button>
@@ -1026,29 +191,27 @@
                     <button class="filter-btn" onclick="filterGallery('cicatrizes', event)">Cicatrizes</button>
                 </div>
 
-                <div class="gallery-grid" id="gallery">
-                    <!-- Os items serão inseridos pelo JavaScript -->
-                </div>
+                <div class="gallery-grid" id="gallery"></div>
 
-                <!-- ÁREA DE UPLOAD -->
-                <div style="margin-top: 50px; border-top: 2px solid var(--border); padding-top: 40px;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">📤 Adicionar Novo Resultado</h3>
+                <div style="margin-top: 50px; border-top: 1px solid var(--parchment); padding-top: 40px;">
+                    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:400; letter-spacing:3px; color:var(--text-dark); margin-bottom:20px;">Adicionar Novo Resultado</h3>
                     <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-                        <p>📷 Clique ou arraste fotos (Antes e Depois)</p>
-                        <small>Formatos aceitos: JPG, PNG | Tamanho máximo: 5MB por arquivo</small>
+                        <p>Clique ou arraste fotos (Antes e Depois)</p>
+                        <small>Formatos aceitos: JPG, PNG &nbsp;·&nbsp; Tamanho máximo: 5MB por arquivo</small>
                     </div>
                     <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
-        // DADOS DOS PROTOCOLOS
+        // DADOS DOS PROTOCOLOS (inalterado)
         const protocolos = {
             'estrias-roxas': {
                 nome: 'Estrias Roxas / Recentes',
-                icon: '🟣',
+                icon: '✦',
                 precos: {
                     P: { isolado: 250, combo: 150 },
                     M: { isolado: 350, combo: 200 },
@@ -1057,7 +220,7 @@
             },
             'estrias-marrom': {
                 nome: 'Estrias Marrom / Cor da Pele',
-                icon: '🟤',
+                icon: '✦',
                 precos: {
                     P: { isolado: 250, combo: 150 },
                     M: { isolado: 350, combo: 200 },
@@ -1066,7 +229,7 @@
             },
             'estrias-brancas-finas': {
                 nome: 'Estrias Brancas Finas',
-                icon: '⚪',
+                icon: '✦',
                 precos: {
                     P: { isolado: 250, combo: 150 },
                     M: { isolado: 350, combo: 200 },
@@ -1075,7 +238,7 @@
             },
             'estrias-brancas-grossas': {
                 nome: 'Estrias Brancas Grossas',
-                icon: '⚪',
+                icon: '✦',
                 precos: {
                     P: { isolado: 250, combo: 150 },
                     M: { isolado: 350, combo: 200 },
@@ -1084,7 +247,7 @@
             },
             'estrias-profundas': {
                 nome: 'Estrias Profundas / Largas',
-                icon: '⚫',
+                icon: '✦',
                 precos: {
                     P: { isolado: 250, combo: 150 },
                     M: { isolado: 350, combo: 200 },
@@ -1093,7 +256,7 @@
             },
             'cicatrizes': {
                 nome: 'Cicatrizes',
-                icon: '🩹',
+                icon: '✦',
                 precos: {
                     P: { isolado: 200, combo: 150 },
                     M: { isolado: 300, combo: 250 },
@@ -1110,17 +273,15 @@
             desconto: 0
         };
 
-        // GALERIA DE RESULTADOS (EXEMPLOS)
         const galeriaExemplos = [
-            { tipo: 'roxas', titulo: 'Caso 1 - Estrias Roxas', descricao: 'Resultado após 3 sessões', sessoes: '3' },
-            { tipo: 'marrom', titulo: 'Caso 2 - Estrias Marrom', descricao: 'Resultado após 4 sessões', sessoes: '4' },
-            { tipo: 'brancas-finas', titulo: 'Caso 3 - Estrias Finas', descricao: 'Resultado após 4 sessões', sessoes: '4' },
-            { tipo: 'brancas-grossas', titulo: 'Caso 4 - Estrias Grossas', descricao: 'Resultado após 6 sessões', sessoes: '6' },
-            { tipo: 'profundas', titulo: 'Caso 5 - Estrias Profundas', descricao: 'Resultado após 7 sessões', sessoes: '7' },
-            { tipo: 'cicatrizes', titulo: 'Caso 6 - Cicatriz', descricao: 'Resultado após 3 sessões', sessoes: '3' },
+            { tipo: 'roxas',          titulo: 'Caso 1 — Estrias Roxas',          descricao: 'Resultado após 3 sessões', sessoes: '3' },
+            { tipo: 'marrom',         titulo: 'Caso 2 — Estrias Marrom',          descricao: 'Resultado após 4 sessões', sessoes: '4' },
+            { tipo: 'brancas-finas',  titulo: 'Caso 3 — Estrias Brancas Finas',   descricao: 'Resultado após 4 sessões', sessoes: '4' },
+            { tipo: 'brancas-grossas',titulo: 'Caso 4 — Estrias Brancas Grossas', descricao: 'Resultado após 6 sessões', sessoes: '6' },
+            { tipo: 'profundas',      titulo: 'Caso 5 — Estrias Profundas',        descricao: 'Resultado após 7 sessões', sessoes: '7' },
+            { tipo: 'cicatrizes',     titulo: 'Caso 6 — Cicatriz',                 descricao: 'Resultado após 3 sessões', sessoes: '3' },
         ];
 
-        // ABAS
         function switchTab(tabName, event) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
@@ -1128,7 +289,6 @@
             event.target.classList.add('active');
         }
 
-        // TRATAMENTO
         document.querySelectorAll('#tratamentoButtons .btn-combo').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('#tratamentoButtons .btn-combo').forEach(b => b.classList.remove('active'));
@@ -1138,7 +298,6 @@
             });
         });
 
-        // ÁREA
         document.querySelectorAll('#areaButtons .btn-combo').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('#areaButtons .btn-combo').forEach(b => b.classList.remove('active'));
@@ -1148,7 +307,6 @@
             });
         });
 
-        // ÁREA DUPLA
         document.querySelectorAll('#areaTypeButtons .btn-combo').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('#areaTypeButtons .btn-combo').forEach(b => b.classList.remove('active'));
@@ -1158,47 +316,40 @@
             });
         });
 
-        // SESSÕES
         document.getElementById('sessoesSlider').addEventListener('input', (e) => {
             estadoAtual.sessoes = parseInt(e.target.value);
             document.getElementById('sessoesValue').textContent = e.target.value;
             atualizar();
         });
 
-        // DESCONTO
         document.getElementById('descontoInput').addEventListener('input', (e) => {
             estadoAtual.desconto = parseFloat(e.target.value) || 0;
             atualizar();
         });
 
-        // FUNÇÃO PRINCIPAL DE ATUALIZAÇÃO
         function atualizar() {
             const protocolo = protocolos[estadoAtual.tipo];
             const precos = protocolo.precos[estadoAtual.area];
             const sessoes = estadoAtual.sessoes;
             const multiplier = estadoAtual.multiplier;
 
-            // Aplicar multiplicador
             const precoIsoladoAjustado = precos.isolado * multiplier;
-            const precoComboAjustado = precos.combo * multiplier;
+            const precoComboAjustado   = precos.combo   * multiplier;
 
-            const totalIsolado = precoIsoladoAjustado * sessoes;
-            const totalComboBase = precoComboAjustado * sessoes;
+            const totalIsolado   = precoIsoladoAjustado * sessoes;
+            const totalComboBase = precoComboAjustado   * sessoes;
 
-            // Aplicar desconto personalizado
             const descontoPersonalizado = (totalComboBase * (estadoAtual.desconto / 100));
             const totalComboFinal = totalComboBase - descontoPersonalizado;
 
-            const economia = totalIsolado - totalComboBase;
+            const economia       = totalIsolado - totalComboBase;
             const percentualDesc = Math.round((economia / totalIsolado) * 100);
 
-            // Atualizar header
             document.getElementById('resultIcon').textContent = protocolo.icon;
             document.getElementById('resultName').textContent = protocolo.nome;
             const tipoArea = estadoAtual.multiplier === 2 ? `Área ${estadoAtual.area} (Dupla)` : `Área ${estadoAtual.area}`;
-            document.getElementById('resultDescription').textContent = `${tipoArea} - ${sessoes} ${sessoes === 1 ? 'sessão' : 'sessões'}`;
+            document.getElementById('resultDescription').textContent = `${tipoArea} · ${sessoes} ${sessoes === 1 ? 'sessão' : 'sessões'}`;
 
-            // Preços
             document.getElementById('precoIsolado').textContent = `R$ ${precoIsoladoAjustado.toLocaleString('pt-BR')}`;
             document.getElementById('detailIsolado').textContent = `R$ ${precoIsoladoAjustado.toLocaleString('pt-BR')} × ${sessoes} = R$ ${totalIsolado.toLocaleString('pt-BR')}`;
 
@@ -1208,7 +359,6 @@
             document.getElementById('discountValue').textContent = `R$ ${economia.toLocaleString('pt-BR')}`;
             document.getElementById('discountPercent').textContent = `${percentualDesc}% de economia`;
 
-            // Desconto personalizado
             if (estadoAtual.desconto > 0) {
                 document.getElementById('customDiscountBanner').style.display = 'block';
                 document.getElementById('customDiscountValue').textContent = `R$ ${descontoPersonalizado.toLocaleString('pt-BR')}`;
@@ -1217,20 +367,17 @@
                 document.getElementById('customDiscountBanner').style.display = 'none';
             }
 
-            // Valor final destacado
             document.getElementById('finalValue').textContent = `R$ ${totalComboFinal.toLocaleString('pt-BR')}`;
             document.getElementById('finalDescription').textContent = `${sessoes} ${sessoes === 1 ? 'sessão' : 'sessões'} em combo`;
 
-            // Info box
             document.getElementById('infoSessoes').textContent = `${sessoes}`;
             document.getElementById('infoValorIsolado').textContent = `R$ ${totalIsolado.toLocaleString('pt-BR')}`;
             document.getElementById('infoValorCombo').textContent = `R$ ${totalComboFinal.toLocaleString('pt-BR')}`;
         }
 
-        // GALERIA
         function gerarGaleria() {
             const gallery = document.getElementById('gallery');
-            gallery.innerHTML = galeriaExemplos.map((item, index) => `
+            gallery.innerHTML = galeriaExemplos.map((item) => `
                 <div class="gallery-item" data-tipo="${item.tipo}">
                     <div class="gallery-images">
                         <div class="gallery-img">Antes</div>
@@ -1240,7 +387,7 @@
                         <div class="gallery-title">${item.titulo}</div>
                         <div class="gallery-description">${item.descricao}</div>
                         <div class="gallery-stats">
-                            <span>📸 ${item.sessoes} sessões</span>
+                            <span>✦ ${item.sessoes} sessões</span>
                         </div>
                     </div>
                 </div>
@@ -1250,17 +397,11 @@
         function filterGallery(tipo, event) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
-
             document.querySelectorAll('.gallery-item').forEach(item => {
-                if (tipo === 'todos' || item.dataset.tipo === tipo) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
+                item.style.display = (tipo === 'todos' || item.dataset.tipo === tipo) ? 'block' : 'none';
             });
         }
 
-        // INICIALIZAR
         gerarGaleria();
         atualizar();
     </script>
